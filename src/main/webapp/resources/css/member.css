@@ -1,0 +1,310 @@
+uploadLabel/* joinagree.jsp-------------------------- */
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+#titleJoinagree {
+	margin: 60px 0 20px 0;
+	width: 100%;
+	text-align: center;
+	width: 100%;
+}
+
+.wrap {
+	margin: auto;
+	width: 400px;
+	margin-top: 20px;
+}
+
+.wrap2 {
+	margin: auto;
+	width: 400px;
+}
+
+.content {
+	background: none;
+	padding-left: 20px;
+	margin: auto;
+	border: none;
+	box-shadow: none;
+	text-align: center;
+}
+
+.box {
+	border: 1px solid #8c8c8c;
+	margin: auto;
+	height: 200px;
+	width: 400px;
+	overflow: scroll;
+	text-align: left;
+}
+
+.box2 {
+	margin: 20px 0px;
+	letter-spacing: 50px;
+}
+
+#btnJoinagree {
+	padding: 30px 70px;
+	letter-spacing: 50px;
+}
+/* join.jsp --------------------------------- */
+#login_wrap {
+	width: 460px;
+	margin: 0 auto;
+}
+
+#content_join {
+	width: 600px;
+	margin: auto;
+	border: none;
+	box-shadow: none;
+	padding: 20px 0;
+	margin-bottom: 20px;
+}
+
+/* header {
+	margin-top: 40px;
+} */
+.input_login {
+	width: 460px;
+	height: 46px;
+	position: relative;
+	overflow: hidden
+}
+
+.input_box {
+	border: 1px solid #ccc;
+	margin: 0 auto 13px;
+}
+
+.red_box {
+	border: 1px solid #E52528;
+	margin: 0 auto 13px;
+}
+
+.input_login img {
+	cursor: pointer;
+	width: 46px;
+	height: 46px;
+	border-right: 1px solid #ccc;
+}
+
+.input_login input {
+	border-style: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 413px;
+	height: 46px;
+	background: #fff;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: bold;
+	text-indent: 12px;
+	color: black;
+	cursor: text;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.input_login input::placeholder {
+	font-weight: bold;
+	color: #aaa
+}
+
+.icon_check {
+	position: absolute;
+	right: 0;
+	border: none !important;
+}
+
+.btn_chk {
+	position: absolute;
+	width: 120px;
+	height: 46px;
+	top: 0px;
+	right: 0px;
+}
+
+.txt_explain {
+	display: none;
+	color: #E52528;
+	font-size: 12px;
+	line-height: 18px;
+	cursor: default;
+	margin: 9px 12px 12px;
+}
+
+#btn_join {
+	cursor: pointer;
+	border-style: none;
+	display: block;
+	width: 460px;
+	height: 50px;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 20px;
+	border-radius: 1%;
+	margin-top: 27px;
+}
+
+#btn_modify {
+	cursor: pointer;
+	border-style: none;
+	display: block;
+	width: 460px;
+	height: 50px;
+	background: #0A955C;
+	color: #fff;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 20px;
+	border-radius: 1%;
+	margin-top: 27px;
+}
+
+#uploadDiv {
+	width: 460px;
+	height: 125px;
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto 13px;
+}
+
+#uploadimg {
+	width: 120px;
+	height: 120px;
+	border-style: none;
+	postion: absolute;
+	margin: auto;
+	border-radius: 50%
+}
+
+.profile {
+	width: 120px;
+	height: 120px;
+	border-style: none;
+	border-radius: 50%;
+	postion: relative;
+}
+
+#uploadBtn {
+	position: absolute;
+	width: 120px;
+	height: 46px;
+	right: 0px;
+	top: 48px;
+}
+
+input:read-only {
+	background-color: #eee;
+}
+
+.oldfile {
+	display: none;
+}
+
+.newfile {
+	display: block;
+}
+
+#uploadLabel {
+	boarder-style: none;
+	display: inline-block;
+	cursor: pointer;
+	position: absolute;
+	height: 46px;
+	top: 0px;
+	right: 0px;
+	overflow: hidden;
+	background: #0A955C;
+	text-align: center;
+	line-height: 40px;
+	color: white;
+	margin-top: 30px;
+}
+
+#uploadFile {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+	#login_wrap {
+		width: 100% !important;
+		margin: 0px !important;
+	}
+	#joinForm {
+		width: 100%;
+	}
+	#btnJoinagree {
+		width: 100%;
+		padding: 0 50px;
+		margin: 20px 0px;
+		letter-spacing: 50px;
+	}
+	/* 	.content {
+	background: none;
+	padding-left: 20px;
+	margin: auto;
+	width: 600px;
+	border: none;
+	box-shadow: none;
+	text-align: center;
+} */
+	.content {
+		width: 100% !important;
+		margin: 0px !important;
+		padding: 0px;
+	}
+	.box_joinagree {
+		width: 100% !important;
+		margin: 0px;
+		letter-spacing: 0px;
+	}
+	.wrap_joinagree {
+		padding: 0;
+	}
+	.wrap2 {
+		width: 100% !important;
+		margin: 0;
+	}
+	.box2 {
+		width: 100%;
+		padding: 0 50px;
+		letter-spacing: 50px;
+		margin: 20px 0px;
+		letter-spacing: 50px;
+	}
+	#content_join {
+		width: 100% !important;
+		margin-top: 10px !important;
+		margin-bottom: 10px !important;
+	}
+	.input_login {
+		width: 100% !important;
+	}
+	.input_login img {
+		cursor: pointer;
+		width: 46px;
+		height: 46px;
+		border-right: 1px solid #ccc;
+	}
+	#btn_join {
+		width: 100% !important;
+	} /* 
+	.input_login {
+		width: 100% !important;
+	}
+	#btn_join {
+		width: 340px !important;
+	}
+	.container {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	} */
+}

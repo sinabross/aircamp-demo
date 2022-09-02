@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.AddMapper">
+	<insert id="insert">
+	  	<selectKey keyProperty="i_id" order="BEFORE" resultType="Long">
+	  		select seq_item_id.nextval from dual
+	  	</selectKey>
+	  	insert into tbl_item(i_id,m_id,i_sdate,i_edate, i_title,i_price,i_info,i_phone,i_email,i_katalk,i_addr) 
+	  	values(#{i_id},#{m_id}, #{i_sdate}, #{i_edate}, #{i_title},#{i_price},#{i_info},#{i_phone},#{i_email},#{i_katalk},#{i_addr})
+    </insert>
+</mapper>

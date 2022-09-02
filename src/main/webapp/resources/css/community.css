@@ -1,0 +1,129 @@
+
+/* 전체 테이블 제목 설정 */
+.commTr th {
+	border-bottom: 1px solid black;
+	font-size: 20px;
+}
+/* 리스트 목록 설정 */
+.commTr td {
+	width: 3%; font-size : 15px;
+	padding: 10px;
+	font-size: 15px;
+}
+
+/* 테이블 제목 크기 설정 */
+.commTr th:nth-child(2) {
+	width: 20% !important;
+	text-align: center;
+}
+
+/* 게시글 등록 버튼 설정 */
+.btn_comm_regbtn {
+	background-color: #929E68;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: white; 
+}
+
+/* 검색 버튼 설정 */
+.btn_comm_search {
+	background-color: #929E68;
+	color: white;
+}
+
+/* 제목 설정 */
+.wrap_communtiy_title {
+	position: relative;
+}
+
+/* 상세보기 수정 버튼 설정 */
+.btn_comm_modify {
+	background-color: #929E68;
+	color: white;
+}
+
+/* 댓글 작성 버튼 설정 */
+#replyBtnAdd {
+	background-color: #929E68;
+	color: white;
+}
+
+/* 상세보기 리스트버튼 설정 */
+.btn_comm_list {
+	background-color: #929E68;
+	color: white;
+}
+
+/* 커뮤티니 버튼 전체 설정 */
+.btn_comm{
+	background-color: #929E68;
+	color: white;
+	
+}
+
+/* 커뮤니티 댓글 버튼 전체 설정 */
+.btn_comm_reply{
+	background-color: #929E68;
+	color: white;
+	
+}
+
+/* 사이즈 변경시 설정 */
+@media screen and (max-width:480px) {
+	.commTr th {
+		border-bottom: 1px solid black;
+		font-size: 12px;
+		text-align: center;
+	}
+	.commTr td {
+		width: 3%;
+		font-size: 15px;
+		padding: 10px;
+	}
+	.commTr th:nth-child(2) {
+		width: 20% !important;
+	}
+	.commTr th:nth-child(4){
+		display:none;
+	
+	}
+	.commTr td:nth-child(4){
+		display:none;
+	
+	}
+	.commTr th:nth-child(5){
+		display:none;
+	
+	}
+	.commTr td:nth-child(5){
+		display:none;
+	
+	}
+	#regCommunityBtn {
+		background-color: #929E68;
+		position: absolute;
+		top: 0;
+		right: 0;
+		color: white;
+	}
+	.btn_comm_search {
+		background-color: #929E68;
+		color: white;
+	}
+	.wrap_communtiy_title {
+		position: relative;
+	}
+	.btn_comm_modify {
+		background-color: #929E68;
+		color: white;
+	}
+	#replyBtnAdd {
+		background-color: #929E68;
+		color: white;
+	}
+	.btn_comm_list {
+		background-color: #929E68;
+		color: white;
+	}
+}

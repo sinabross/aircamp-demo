@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* common.css */
+@font-face{
+    font-family:Proxima_Bold;
+    src:url("../font/Proxima Nova Alt Bold.otf");
+}
+
+/* 
+.color_air_green{
+    background-color: #0A955C !important;
+}
+*/
+ 
+.color_air_green{
+      background-color: #929E68 !important;
+}
+  
+.color_yellow{
+	color:#F1C40F;
+}
+
+/* reset */        
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0;padding:0}
+fieldset,img {border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes: none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+button {border:0 none;background-color:transparent;cursor:pointer}
+body {background:#fff}
+body,th,td,input,select,textarea,button {font-size:12px;line-height:1.5;font-family:'돋움',dotum,sans-serif;color:#333} /* color값은 디자인가이드에 맞게사용 */
+a {color:#333;text-decoration:none}
+a:active, a:hover {text-decoration:none}
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+
+
+
+  
+ /** detail.css **/
+.wrap_detail{font-family:Proxima_Bold;padding:25px;}
+.wrap_detail h1{margin:20px 0 50px;text-align:center;font-size:30px;font-weight:bold;line-height: 1.1em}
+.line_detail{clear:both;border-top:1px solid #929E68}
+.btn_detail{color:white;font-weight:bold;font-size:16px;height:40px;}
+
+
+/* item picture */
+.fotorama{width:62%;float:left;}
+.fotorama__img{position:absolute;top:0 !important;max-height:500px !important;}
+
+
+/* reservation */
+#detailReservation{width:35%;float:left;border:1px solid #929E68;margin-left:20px}
+#detailReservation label {font-weight: bold;font-size:13px}    
+
+#detailPrice{font-size:35px;font-weight: bold;text-align:right;padding:20px 30px;}
+#detailDate{padding:0 30px;}
+#detailRentDate{margin-bottom:15px; font-size:22px;color:#D93131;}
+#detailDateStart, #detailDateEnd {border:1px solid #929E68; width:100%; height:30px;margin-bottom:15px;}
+
+#detailItemLocation{font-weight: bold;font-size:14px;height:30px}
+.img_icon_location{width:25px;vertical-align: middle}
+
+#btnReserv{padding:20px 30px 30px}
+#btnReserv button {width:100%;}
+
+
+/* item intro */
+#detailItemIntro{clear:both;width:100%;margin:20px 0;padding-top:20px;position:relative}
+
+.detail_item_intro{font-size:15px;margin:30px 0;}
+.detail_title{font-weight:bold;font-size:18px;margin:15px 0;}
+.detail_title b {font-size:15px}
+.detail_title span {font-weight:normal;font-size:15px}
+
+#detailReport{color:red;font-weight: bold;font-size:16px;position:absolute;top:0;right:0;margin:20px 0;}
+#detailReport:hover{text-decoration: none}
+
+    
+/* host information */
+#detailHostInfo{width:20%;height:200px;float:left;}
+.detail_host_info{cursor:pointer} 
+.img_host_photo{display:block;width:80px;height:80px;border-radius:50%;margin:0 auto 10px;}
+.detail_host_name{display:block;font-weight:bold; font-size:15px;line-height:1.3em; text-align: center}
+.detail_host_name a{text-decoration:none}
+
+#detailItemInfo{width:79%;height:200px;float:left;padding-left:20px;}
+.detail_item_info{font-size:16px;}
+.detail_item_info:first-child{margin-top:60px}
+.img_icon_katalk{width:18px;}
+
+.detail_no_info{font-size:13px;}
+
+
+/* item review */
+#detailReview{clear:both;width:100%;position:relative}
+.wrap_review_photo{width:20%;float:left;margin:20px 0;}
+.img_member_photo{display:block;width:60px;height:60px;margin:0 auto;border-radius:50%;}
+.img_member_profile{width:100%; height:100%;border-radius:50%;}
+.review_member_name{display:block;font-size:15px;font-weight: bold;text-align: center;}
+
+.wrap_review_content{width:60%;float:left;margin:10px 0;padding-left:20px;}
+.review_content, .review_regdate{padding:10px;font-size:14px;}
+
+.wrap_review_btn{width:19%;float:left;margin:40px auto;text-align:center}
+.btn_review_update, .btn_review_delete{font-size:20px;margin-right:15px}
+.btn_review_update:hover, .btn_review_delete:hover{color:#929E68}
+
+#btnReviewModal{width:130px;position:absolute;top:0;right:0;}
+
+
+/* button */
+#btnDetailBottom{margin:20px 0 100px}
+#btnItemReg, #btnItemUpdate, #btnItemDelete, #btnItemList {width:100%;margin:0 auto}
+
+
+
+
+/* Media Query */
+
+@media screen and (min-width:768px) and (max-width:959px){            
+    .fotorama{width:61%;}
+    #detailReservation{width:35%;}
+    
+    #detailHostInfo{width:25%;} 
+    #detailItemInfo{width:74%;}
+}
+
+@media screen and (max-width:767px){            
+    .fotorama{width:100%;clear:both;}
+    #detailReservation{width:100%;clear:both;margin:25px 0 0 0;}
+}
+
+@media screen and (max-width:600px){ 
+    #detailHostInfo{width:100%;clear:both;} 
+    #detailItemInfo{width:100%;clear:both;}
+}
+
+@media screen and (max-width:478px){
+	.wrap_review_btn{margin:20px auto}
+}
+
+
+

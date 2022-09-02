@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.ModifyMapper">
+	<select id="addByIid" resultType="com.aircamp.domain.ItemVO">
+		select * from tbl_item where m_id = #{m_id} AND i_id = #{i_id}
+	</select>
+	<select id="fileByIid" resultType="com.aircamp.domain.GalleryVO">
+		select * from tbl_gallery where i_id = #{i_id}
+	</select>
+	<update id="updateItem">
+		update tbl_item set i_id=#{i_id},m_id=#{m_id},i_sdate=#{i_sdate},i_edate=#{i_edate}, i_title=#{i_title},i_price=#{i_price},i_info=#{i_info},i_phone=#{i_phone},i_email=#{i_email},i_katalk=#{i_katalk},i_addr=#{i_addr} where i_id = #{i_id} 
+	</update>
+	<delete id="deleteAll">
+		delete tbl_gallery where i_id =#{i_id}
+	</delete>
+	<update id="detailRemove">
+		update tbl_item set i_status = 1 where m_id = #{m_id} AND i_id = #{i_id}
+	</update>
+</mapper>

@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/common/footer.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/login.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/main.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/mypage/lnb.jsp=UTF-8
+encoding//src/main/webapp/resources/css/header.css=UTF-8
+encoding//src/main/webapp/resources/css/login.css=UTF-8

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.CommunityMapper">
+
+	<sql id="paging">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							c_title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							c_content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							m_id like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- 목록 -->
+	<select id="getList" resultType="com.aircamp.domain.CommunityVO">
+		<![CDATA[
+			select * from tbl_community order by c_id desc
+		]]>
+	</select>
+
+	<!-- 등록 -->
+	<insert id="insert">
+		insert into tbl_community(c_id, m_id, c_title,
+		c_content)
+		values (seq_comm_id.nextval, #{m_id}, #{c_title},
+		#{c_content})
+	</insert>
+
+
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="c_id" order="BEFORE"
+			resultType="Long">
+			select seq_comm_id.nextval from dual
+		</selectKey>
+
+		insert into tbl_community(c_id, m_id, c_title, c_content)
+		values
+		(#{c_id}, #{m_id}, #{c_title}, #{c_content})
+	</insert>
+
+	<!-- 조회 -->
+	<select id="read" resultType="com.aircamp.domain.CommunityVO">
+		select * from tbl_community where
+		c_id = #{c_id}
+	</select>
+
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete tbl_community where c_id = #{c_id}
+	</delete>
+
+	<!-- 수정 -->
+	<update id="update">
+		update tbl_community set c_title = #{c_title},
+		c_content = #{c_content} where c_id = #{c_id}
+	</update>
+
+	<!-- 검색 기능 페이징처리  -->
+	<select id="getListWithPaging"
+		resultType="com.aircamp.domain.CommunityVO">
+		<![CDATA[
+			select
+				c_id, c_title, c_content, m_id, c_regdate, c_read_cnt
+			from
+				(
+				select /*+INDEX_DESC(tbl_community pk_community)*/
+					rownum rn, c_id, c_title, c_content, m_id, c_regdate, c_read_cnt
+				from
+					tbl_community
+				where
+			]]>
+
+				<include refid = "paging"></include>
+		
+			<![CDATA[	
+				 rownum <= #{pageNum} * #{amount}
+				)
+				where rn > (#{pageNum} -1) * #{amount}
+		]]>
+
+	</select>
+
+	<!-- 전체 데이터 수 -->
+	<select id="getTotalCount" resultType="int">
+		select count(*) from
+		tbl_community where
+		
+			<include refid = "paging"></include>
+		
+		 c_id > 0
+
+	</select>
+	
+	
+	<!-- 조회수 처리 -->
+	<update id="updateViewCnt">
+		update tbl_community
+			set c_read_cnt = c_read_cnt +1
+			where c_id = #{c_id}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

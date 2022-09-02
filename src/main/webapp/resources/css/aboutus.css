@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: Proxima_Bold;
+	src: url("../font/Proxima Nova Alt Bold.otf");
+}
+
+@font-face {
+	font-family: Proxima_ExtraBold;
+	src: url("../font/Proxima Nova Extrabold.otf");
+}
+
+@font-face {
+	font-family: NanumSquare;
+	src: url("../font/NanumSquare_acR.ttf");
+}
+
+body {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap_aboutus {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.aboutus {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.txt_aboutus_1 {
+	font-family: NanumSquare;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-align: center;
+	margin-top: 8vw;
+	margin-bottom: 3vw;
+}
+
+.img_camping_item {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.img_camping_item img {
+	width: 160px;
+	padding: 20px;
+	margin: 0 auto;
+}
+
+.txt_aboutus_2 {
+	font-family: NanumSquare;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	line-height: 1.6em;
+	text-align: center;
+	margin-top: 8vw;
+}
+
+.img_tent {
+	text-align: center;
+}
+
+.img_tent img {
+	width: 500px;
+	padding: 50px;
+}
+
+.img_grill{
+	text-align:center;
+}
+
+.img_grill img{
+	width:400px;
+	padding:50px;
+}
+
+.txt_aboutus_3 {
+	font-family: NanumSquare;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	line-height: 1.6em;
+	text-align: center;
+	margin-top: 3vw;
+	margin-bottom: 150px;
+}
+
+.aboutus_start {
+	display: block;
+	text-decoration: none;
+	color: black;
+	margin-top: 10vw;
+	font-size: 30px;
+}
+
+.aboutus_start:hover {
+	color: #929E68;
+	text-decoration: none;
+}

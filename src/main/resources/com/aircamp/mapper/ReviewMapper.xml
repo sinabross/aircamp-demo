@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.ReviewMapper">
+
+	<select id="getReview" resultType="com.aircamp.domain.ShareVO">
+		select * 
+		from tbl_share
+		where s_id=
+		(
+		    select MIN(s_id)
+		    from tbl_share
+		    where i_id=#{i_id}
+		    and m_id=#{m_id}
+		    and s_opi_chk=0
+		)
+	</select>
+	
+	<update id="addReview">
+		update tbl_share
+		set s_opi=#{s_opi},
+		    s_opidate=SYSDATE,
+		    s_score_m=#{s_score_m},
+		    s_score_i=#{s_score_i},
+		    s_opi_chk=1
+		where s_id=
+		(
+		    select MIN(s_id)
+		    from tbl_share
+		    where i_id=#{i_id}
+		    and m_id=#{m_id}
+		    and s_opi_chk=0
+		    and SYSDATE > TO_DATE(#{s_edate}, 'YYYY-MM-DD')
+		)
+	</update>
+	<update id="addMypageReview">
+		update tbl_share
+		set s_opi=#{s_opi},
+		s_opidate=SYSDATE,
+		s_score_m=#{s_score_m},
+		s_score_i=#{s_score_i},
+		s_opi_chk=1
+		where s_id=#{s_id}
+	</update>
+
+	
+	<!-- 
+	<update id="addReview">
+		update tbl_share
+		set s_opi=#{s_opi},
+		    s_opidate=SYSDATE,
+		    s_score_m=#{s_score_m},
+		    s_score_i=#{s_score_i},
+		    s_opi_chk=1
+		where s_id=#{s_id}
+		and i_id=#{i_id}
+		and m_id=#{m_id}
+		and s_opi_chk=0
+		and SYSDATE > TO_DATE(#{s_edate}, 'YYYY-MM-DD')
+	</update>
+	-->
+	
+	<select id="readReview" resultType="com.aircamp.domain.ShareVO">
+		select * from tbl_share where s_id=#{s_id}
+	</select>
+	
+	<update id="updateReview">
+		update tbl_share 
+		set s_opi=#{s_opi}, s_score_m=#{s_score_m}, s_score_i=#{s_score_i}
+		where s_id=#{s_id}
+	</update>
+	
+	<update id="deleteReview">
+		update tbl_share
+		set s_opi=NULL, s_score_m=0, s_score_i=0, s_opi_chk=0
+		where s_id=#{s_id}
+	</update>
+	
+	<update id="updateItemScore">
+		update tbl_item
+		set i_score = i_score + #{s_score_i}, i_eval=i_eval+1
+		where i_id=#{i_id}
+	</update>
+	
+	<update id="updateMemberScore">
+		update tbl_member
+		set m_score = m_score + #{s_score_m}, m_eval=m_eval+1
+		where m_id=#{m_id}
+	</update>
+	
+	<update id="deleteItemScore">
+		update tbl_item
+		set i_score = i_score - #{s_score_i}, i_eval=i_eval-1
+		where i_id=#{i_id}
+	</update>
+	
+	<update id="deleteMemberScore">
+		update tbl_member
+		set m_score = m_score - #{s_score_m}, m_eval=m_eval-1
+		where m_id=#{m_id}
+	</update>
+	
+	
+</mapper>

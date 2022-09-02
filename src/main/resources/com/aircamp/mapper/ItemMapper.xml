@@ -1,0 +1,212 @@
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.ItemMapper">
+	<!-- 회원탈퇴시 맴버아이디로 아이템 status변경 -->
+	
+	<update id="deleteMemberItem">
+		update tbl_item set i_status=1 where m_id = #{m_id} 
+	</update>
+	
+	<select id="getAllItems" resultType="com.aircamp.domain.ItemVO">
+		SELECT * from
+		tbl_item where
+		i_status=0
+		order by i_regdate desc
+	</select>
+	<!-- <select id="getThumnailImg" resultType="com.aircamp.domain.GalleryVO"> 
+		select g.i_id,g.g_id,g.g_path,g.g_uuid,g.g_filename from ( select tbl_gallery.i_id, 
+		min(tbl_gallery.g_id) g_id from tbl_gallery , tbl_item where tbl_gallery.i_id=tbl_item.i_id 
+		group by tbl_gallery.i_id) e, tbl_gallery g where e.g_id=g.g_id </select> -->
+	<!-- <select id="getAllItemThumbnail" resultType="com.aircamp.domain.ItemThumbnailVO"> 
+		select * from (select g.i_id,g.g_id,g.g_path,g.g_uuid,g.g_filename from ( 
+		select tbl_gallery.i_id, min(tbl_gallery.g_id) g_id from tbl_gallery , tbl_item 
+		where tbl_gallery.i_id=tbl_item.i_id group by tbl_gallery.i_id) e, tbl_gallery 
+		g where e.g_id=g.g_id) t, tbl_item i where i.i_id=t.i_id </select> -->
+	<select id="getAllItemThumbnail"
+		resultType="com.aircamp.domain.ItemThumbnailVO">
+		select *
+		from
+		tbl_item left outer join
+		(select
+		tbl_item.i_id,min(tbl_gallery.g_id) g_id
+		from tbl_gallery ,
+		tbl_item
+		where
+		tbl_gallery.i_id=tbl_item.i_id
+		group by
+		tbl_gallery.i_id) g
+		on g.i_id=tbl_item.i_id and tbl_item.i_status=0
+		order by tbl_item.i_regdate desc
+	</select>
+	<select id="getHomeItemThumbnail"
+		resultType="com.aircamp.domain.ItemThumbnailVO">
+		<![CDATA[	
+		select *
+		from
+		tbl_item left outer join
+		(select
+		tbl_item.i_id,min(tbl_gallery.g_id) g_id
+		from tbl_gallery ,
+		tbl_item
+		where
+		tbl_gallery.i_id=tbl_item.i_id
+		group by
+		tbl_gallery.i_id) g
+		on g.i_id=tbl_item.i_id and tbl_item.i_status=0
+		where rownum<=5
+		order by tbl_item.i_regdate desc
+		]]>
+	</select>
+
+<!-- V1 수정 190808 yerak -->
+
+	<resultMap id="MemberVO" type="com.aircamp.domain.MemberVO">
+		<result property="m_id" column="m_id"/>
+		<result property="m_name" column="m_name"/>	
+		<result property="m_pw" column="m_pw"/>		
+		<result property="m_phone" column="m_phone"/>
+		<result property="m_email" column="m_email"/>
+		<result property="m_katalk" column="m_katalk"/>
+		<result property="m_uuid" column="m_uuid"/>
+		<result property="m_path" column="m_path"/>
+		<result property="m_filename" column="m_filename"/>
+		<result property="m_score" column="m_score"/>
+		<result property="m_eval" column="m_eval"/>
+		<result property="m_status" column="m_status"/>
+	</resultMap>
+	
+	<resultMap id="GalleryVO" type="com.aircamp.domain.GalleryVO">
+	    <result property="g_id" column="g_id"/>
+	    <result property="i_id" column="i_id"/>
+	    <result property="g_uuid" column="g_uuid"/>
+	    <result property="g_path" column="g_path"/>
+	    <result property="g_filename" column="g_filename"/>
+	</resultMap>
+	 
+	<resultMap id="ItemVO" type="com.aircamp.domain.ItemVO">
+	    <result property="i_id" column="i_id"/>
+	    <result property="m_id" column="m_id"/>
+	    <result property="i_sdate" column="i_sdate"/>
+	    <result property="i_edate" column="i_edate"/>
+	    <result property="i_score" column="i_score"/>
+	    <result property="i_eval" column="i_eval"/>
+	    <result property="i_regdate" column="i_regdate"/>
+	    <result property="i_title" column="i_title"/>
+	    <result property="i_price" column="i_price"/>
+	    <result property="i_info" column="i_info"/>
+	    <result property="i_phone" column="i_phone"/>
+	    <result property="i_email" column="i_email"/>
+	    <result property="i_katalk" column="i_katalk"/>
+	    <result property="i_addr" column="i_addr"/>
+	    <result property="i_status" column="i_status"/>
+	    <collection property="galleryList" resultMap="GalleryVO"/>
+	    <collection property="memberList" resultMap="MemberVO"/>
+	</resultMap>
+	
+	<select id="getItemDetailAll" resultMap="ItemVO">
+    	select *
+		from tbl_item
+		left outer join tbl_gallery
+		on tbl_item.i_id=tbl_gallery.i_id
+		join tbl_member
+		on tbl_item.m_id=tbl_member.m_id
+		where tbl_item.i_id=#{i_id}
+    </select>
+    
+	<select id="getItemDetail" resultType="com.aircamp.domain.ItemVO">
+  		select * from tbl_item where i_id=#{i_id}
+    </select>
+
+	<select id="getItemShare" resultType="com.aircamp.domain.ShareVO">
+		select * from tbl_share where i_id=#{i_id}
+	</select>
+	
+	<!-- 
+	<select id="getItemReviewAll" resultType="com.aircamp.domain.ShareMemberVO">
+		<![CDATA[
+		select * 
+		from tbl_share 
+		join tbl_member
+		on tbl_share.m_id=tbl_member.m_id
+		where i_id=#{i_id}
+		and s_opi_chk=1
+		]]>
+	</select>
+	 -->
+	 
+	<select id="getItemReviewAll" resultType="com.aircamp.domain.ShareMemberVO">
+		<![CDATA[
+		select * from
+		(
+			select /*+ INDEX_DESC(tbl_share s_id) */
+			rownum rn, s.s_id, s.i_id, s.s_sdate, s.s_edate, s.s_price, s.s_addr, s.s_regdate, s.s_opi, s.s_opidate, s.s_score_m, s.s_score_i, s.s_opi_chk, 
+			m.m_id, m.m_name, m.m_pw, m.m_phone, m.m_email, m.m_katalk, m.m_uuid, m.m_path, m.m_filename, m.m_score, m.m_eval, m.m_status
+			from tbl_share s
+			join tbl_member m
+			on s.m_id=m.m_id
+			where i_id=#{i_id}
+			and s_opi_chk=1
+			and rownum <= (#{cri.pageNum} * #{cri.amount})
+		) 
+		where rn > ((#{cri.pageNum}-1) * #{cri.amount})
+		order by s_id DESC
+		]]>
+	</select>
+	 
+	<select id="getReviewCount" resultType="int">
+		select count(*) 
+		from tbl_share 
+		where i_id=#{i_id}
+		and s_opi_chk=1
+	</select>
+	
+	<insert id="reservation">
+		<![CDATA[
+		insert into tbl_share(s_id, i_id, m_id, s_sdate, s_edate, s_price, s_addr) 
+		select seq_share_id.nextval, #{i_id}, #{m_id}, #{s_sdate}, #{s_edate}, #{s_price}, #{s_addr} from dual 
+		where not exists
+		(
+			select s_id, i_id, m_id, s_sdate, s_edate, s_price, s_addr
+			from tbl_share
+			where i_id=#{i_id} 
+			and (s_sdate <= #{s_edate} and s_edate >= #{s_sdate})
+		)
+		]]>
+	</insert>
+	
+	<select id="getHostItem" resultMap="ItemVO">
+		select *
+		from tbl_item
+		left outer join tbl_gallery
+		on tbl_item.i_id=tbl_gallery.i_id 
+		where m_id=#{m_id}
+	</select>
+
+	<!-- <select id="getHostItem" resultType="com.aircamp.domain.ItemVO"> select 
+		* from tbl_item where m_id=#{m_id} </select> -->
+
+	<insert id="insert">
+		insert into tbl_share(s_id, i_id, m_id, s_sdate,
+		s_edate, s_price, s_addr)
+		values(seq_share_id.nextval, #{i_id},
+		#{m_id}, #{s_sdate}, #{s_edate},
+		#{s_price}, #{s_addr})
+	</insert>
+
+	<!-- test -->
+	<select id="getSearchList"
+		resultType="com.aircamp.domain.ItemVO">
+		select * from tbl_item
+		where i_addr=#{addr}
+		and
+		i_sdate=#{sdate}
+		and i_edate=#{edate}
+		and
+		i_title=#{title}
+	</select>
+
+
+
+
+</mapper>

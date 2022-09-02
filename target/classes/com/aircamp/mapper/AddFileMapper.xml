@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.AddFileMapper">
+	<insert id="insert">
+		insert into TBL_GALLERY(G_ID,I_ID,G_UUID,G_PATH,G_FILENAME) 
+		values(seq_gallery_id.nextval,#{i_id},#{g_uuid},#{g_path},#{g_filename})
+	</insert>
+</mapper>

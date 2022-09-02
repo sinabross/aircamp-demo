@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.color_gray{color:#B0B0B0}
+
+#reviewBody{padding:30px;}
+#reviewBody h4{display:inline-block;font-size:15px;font-weight:bold;line-height:2.0em;}
+
+
+/* 후기 등록 */
+.txt_review{width:100%;font-size:13px;padding:8px}
+
+
+/* 별점 */
+.wrap_review_star{height:35px;}
+.review_star_score{display:inline-block;font-size:20px;margin-left:10px;}
+.review_star{cursor:pointer;}
+.review_star.on{color:#F1C40F}
+
+
+/* 하단 버튼 */
+.btn_review{width:15%;height:35px;color:white;font-size:15px;font-weight:bold;margin:5px;}
+

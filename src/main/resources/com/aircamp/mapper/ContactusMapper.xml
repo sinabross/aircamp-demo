@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.ContactusMapper">
+
+	<insert id="insertQna">
+		<selectKey keyProperty="q_id" order="BEFORE"
+			resultType="Long">
+			select seq_qna_id.nextval from dual
+		</selectKey>
+		insert into tbl_qna(q_id,m_id,q_email,q_title,q_content,q_regdate)
+		values(#{q_id},#{m_id},#{q_email},#{q_title},#{q_content},default)
+	</insert>
+	<select id="getQna" resultType="com.aircamp.domain.QnaVO">
+		select * from tbl_qna where q_id=#{q_id}
+	</select>
+
+</mapper>
+

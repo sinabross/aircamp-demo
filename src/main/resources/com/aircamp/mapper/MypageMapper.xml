@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.MypageMapper">
+
+	<!-- 정현 수정 2019-07-31 ver2 -->
+
+	<!-- 비번확인 -->
+	<select id="pwcheck" resultType="String">
+		select m_pw from tbl_member
+		where m_id=#{m_id}
+	</select>
+
+	<!-- 예약정보 리스트 -->
+	<select id="mypageShareListWithPaging"
+		resultType="com.aircamp.domain.ShareItemVO">
+		<![CDATA[
+		select *
+		from 
+			(
+			select rownum rn , a.i_id ,a.i_title , b.s_id , b.s_sdate , b.s_edate , b.s_price , b.s_addr , b.s_regdate 
+				from tbl_item a , tbl_share b
+				where a.i_id = b.i_id and b.m_id=#{m_id} 
+				and rownum <= #{pageNum} * #{amount}
+				)
+				where rn > (#{pageNum} -1) * #{amount}
+				
+		]]>
+
+	</select>
+
+	<select id="mypageShareGetTotalCount" resultType="int">
+		select count(*)
+		from tbl_item a , tbl_share b where a.i_id = b.i_id and b.m_id =
+		#{m_id}
+	</select>
+
+
+	<!-- <select id="mypageShareList" resultType="com.aircamp.domain.ShareItemVO" 
+		> select a.i_id ,a.i_title , b.s_id , b.s_sdate , b.s_edate , b.s_price , 
+		b.s_addr , b.s_regdate from tbl_item a , tbl_share b where a.i_id = b.i_id 
+		and a.m_id=#{m_id} </select> -->
+
+	<!--등록정보 리스트 -->
+	<select id="mypageItemList"
+		resultType="com.aircamp.domain.ItemVO">
+		select * from tbl_item where
+		m_id=#{m_id}
+	</select>
+
+	<select id="mypageItemListWithPaging"
+		resultType="com.aircamp.domain.ItemVO">
+		<![CDATA[
+			select * from 
+			
+			( select rownum rn , i_id , m_id , i_sdate , i_edate , i_regdate , i_title , i_price , i_addr
+			from 
+			tbl_item where m_id=#{m_id} and rownum <= #{pageNum} * #{amount} and i_status = 0
+				)
+				where rn > (#{pageNum} -1) * #{amount}
+		]]>
+
+	</select>
+
+	<select id="mypageItemGetTotalCount" resultType="int">
+		select count(*)
+		from tbl_item where m_id = #{m_id} and i_status = 0
+	</select>
+
+	<!--등록정보 리스트 끝 -->
+
+	<!--커뮤니티 리스트 -->
+	<!-- <select id="mypageCommList" resultType="com.aircamp.domain.CommunityVO"> 
+		select * from tbl_community where m_id=#{m_id} </select> -->
+
+	<select id="mypageCommListWithPaging"
+		resultType="com.aircamp.domain.CommunityVO">
+		<![CDATA[
+			
+			select * from 
+			( select rownum rn , c_id , c_title , c_regdate 
+			 from tbl_community where m_id=#{m_id} and rownum <= #{pageNum} * #{amount} 
+				)
+				where rn > (#{pageNum} -1) * #{amount}
+		]]>
+
+	</select>
+
+	<select id="mypageCommGetTotalCount" resultType="int">
+		select count(*)
+		from tbl_community where m_id = #{m_id}
+	</select>
+
+	<!-- 커뮤니티리스트 끝 -->
+
+
+	<!--Contactus 리스트 -->
+	<!-- <select id="mypageQnaList" resultType="com.aircamp.domain.QnaVO"> select 
+		* from tbl_qna where m_id = #{m_id} </select> -->
+
+	<select id="mypageQnaListWithPaging"
+		resultType="com.aircamp.domain.QnaVO">
+		<![CDATA[
+			select * from 
+			( select rownum rn , q_id , q_title , q_regdate 
+			 from tbl_qna where m_id=#{m_id} and rownum <= #{pageNum} * #{amount} 
+				)
+				where rn > (#{pageNum} -1) * #{amount}
+		]]>
+
+	</select>
+
+	<select id="mypageQnaGetTotalCount" resultType="int">
+		select count(*)
+		from tbl_qna where m_id = #{m_id}
+	</select>
+
+
+	<!--Contactus 리스트끝 -->
+
+	<!--예약취소 -->
+	<delete id="mypageShareDelete">
+		delete tbl_share where m_id =
+		#{m_id} and s_id =
+		#{s_id}
+
+	</delete>
+	<select id="getReservationListByIid" parameterType="Long"
+		resultType="com.aircamp.domain.ShareVO">
+		select * from tbl_share s where
+		s.i_id=#{i_id}
+	</select>
+
+</mapper>

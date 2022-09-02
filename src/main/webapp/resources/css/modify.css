@@ -1,0 +1,163 @@
+@media screen and (max-width: 650px) {
+    #box{
+        width: 500px !important;
+    }
+    .input_align{
+    	width: 300px !important;
+    }
+    #label_search{
+        width: 240px !important;
+    }
+    .all_label{
+        width: 100px !important;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    #box{
+        width: 400px !important;
+    }
+    .input_align{
+    	width: 250px !important;
+    }
+    #label_search{
+        width: 193px !important;
+    }
+    .all_label{
+        width: 90px !important;
+    }
+    textarea{
+    	width: 250px !important;
+    }
+
+}
+@media screen and (max-width: 450px) {
+    #box{
+        width: 300px !important;
+    }
+    .input_align{
+    	width: 200px !important;
+    }
+    #label_search{
+        width: 150px !important;
+    }
+    .all_label{
+        width: 60px !important;
+        
+    }
+    textarea{
+        width: 200px !important;
+        height: 100px !important;
+    }
+    
+}
+
+
+
+#title_name{
+    margin-top:20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#box{
+    border: 2px solid #8c8c8c;
+    background-color:white;
+    width: 600px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+}
+
+#box_body{
+    margin-top: 40px;
+    height: 100%;
+    width: 100%;
+}
+
+#box_end{
+    margin-top: 50px;
+    display:block;
+    text-align: center;
+    clear: both;
+}
+
+.input_align{
+    margin-bottom: 5px;
+    margin-left: 10px;
+    width: 300px;
+}
+.all_label{
+    width: 150px;
+    display: inline-block;
+    text-align: right;
+}
+textarea{
+    margin-left: 10px;
+}
+
+.kk{
+    margin-left: 100px;
+}
+#label_search{
+    margin-left: 10px;
+    width: 240px;
+}
+.input_datepic{
+    margin-bottom: 5px;
+    margin-left: 10px;
+    width: 110px;
+}
+#date_label{
+    width: 63px;
+    text-align: right;
+}
+#b{
+	display: inline-block; 
+	padding: .5em .75em; 
+	color: #999; 
+	font-size: inherit; 
+	line-height: normal; 
+	vertical-align: middle; 
+	background-color: #fdfdfd;
+ 	cursor: pointer;
+	border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+
+.filebox input[type="file"] { 
+/* 파일 필드 숨기기 */ 
+	position: absolute; width: 1px; 
+	height: 1px; 
+	padding: 0; margin: -1px; 
+	overflow: hidden; clip:rect(0,0,0,0); 
+	border: 0; 
+}
+/* 업로드될 파일 목록 */
+#uploadResult{
+	margin: 10px 100px;
+margin-right: 0px;
+}
+
+#uploadResult img{
+	width: 100px; 
+
+}
+
+#fileCheck li{float:left;list-style:none;}
+
+.xBtn{
+	position:absolute;
+	width: 30px;
+	height: 30px;
+	 
+}
+.red{
+    color:red;
+}
+.mar{
+        margin-top:-8px;
+        margin-left: 170px;
+    }

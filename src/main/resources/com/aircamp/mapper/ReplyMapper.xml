@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.ReplyMapper">
+
+	<insert id = "insert">
+		insert into tbl_reply (r_id, c_id, m_id, r_content)
+		values (seq_reply_id.nextval, #{c_id}, #{m_id}, #{r_content})
+	</insert>
+	
+	<select id = "read" resultType = "com.aircamp.domain.ReplyVO">
+		select * from tbl_reply where r_id = #{r_id}
+	</select>
+	
+	<delete id = "delete">
+		delete from tbl_reply where r_id = #{r_id}
+	</delete>
+	
+	<update id = "update">
+		update tbl_reply set r_content = #{r_content} where r_id = #{r_id}
+	</update>
+	
+	<!-- <select id="getListWithPaging" resultType = "com.aircamp.domain.ReplyVO">
+		select r_id, c_id, m_id, r_content, r_regdate
+		from tbl_reply
+		where c_id = #{c_id}
+		order by r_id asc
+	</select> -->
+	
+	<select id="getListWithPaging" resultType = "com.aircamp.domain.ReplyVO">
+	<![CDATA[
+		select r_id, c_id, m_id, r_content, r_regdate
+		from 
+		(
+			select /*+INDEX(tbl_reply idx_reply)+*/
+				rownum rn, r_id, c_id, m_id, r_content, r_regdate
+			from tbl_reply
+			where c_id = #{c_id}
+			and r_id > 0
+			and rownum <= #{paging.pageNum} * #{paging.amount}
+		)
+		where rn > (#{paging.pageNum} -1) * #{paging.amount}
+		
+		]]>
+	</select>
+	
+<select id = "getCountByC_id" resultType = "int">
+		<![CDATA[
+			select count(r_id) from tbl_reply where c_id = #{c_id}
+		
+		]]>
+		
+	</select>
+</mapper>

@@ -1,0 +1,35 @@
+.color_bg_gray {
+	/* height: ; */
+	background-color: #888;
+}
+
+#sectionBody {
+	position: relative;
+	top: 0;
+	width: 100vw;
+}
+
+#wrapFooter {
+	height: 150px;
+	box-sizing: border-box;
+	padding: 30px
+}
+
+#wrapFooter {
+	color:#ddd;
+	box-sizing: border-box;
+	padding: 50px 70px;
+}
+
+.title_footer {
+	display: inline-block;
+	width: 150px;
+}
+
+.txt_footer {
+	display: inline-block;
+}
+/* #sectionFooter div{
+	
+	margin:auto;
+}  */

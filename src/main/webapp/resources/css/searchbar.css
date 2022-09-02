@@ -1,0 +1,149 @@
+#wrapSearchBar {
+	position: relative;
+	background-color: rgba(228, 228, 228, .95);
+	padding: 0 1vw 0 1vw;
+	margin-bottom: 0;
+	margin: auto;
+	display: block;
+}
+
+#barSearchMobile {
+	display: none;
+}
+
+#wrapSearchBar .form-control {
+	position: relative;
+	border: none;
+	display: inline-block;
+	width: 80%;
+	border-radius: 0px;
+}
+
+#formSearchBar {
+	padding: 26px 0 0 0;
+}
+
+#wrapSearchBar .form-group {
+	padding: 0;
+	display: inline-block;
+}
+
+#wrapSearchBar .form-group i {
+	padding-right: 5px;
+	font-size: 18px;
+}
+
+#btnSearchbarSubmit {
+	border: none;
+	background: none;
+	font-size: 1.3vw;
+	height: 34px;
+	display: inline-block;
+}
+#btnSearchbarSubmitMobile {
+	display:none;
+	
+}
+#wrapSdate, #wrapEdate {
+	margin-right: 1vw;
+}
+
+#wrapKeyword {
+	margin-left: 0.3vw;
+	margin-right: 1.8vw;
+}
+
+#wrapKeyword .form-control {
+	width: 110%;
+}
+
+#btnHosting {
+	position: absolute;
+	text-align: center;
+	top:25px;
+	border: none;
+	border-radius: 0px;
+	width: 6.5vw;
+	height: 34px;
+	background-color: #FF5347;
+	font-size: 15px;
+	color: #fff;
+	display: inline-block;
+	right: 1vw;
+}
+
+#btnHostingMobile {
+	display: none;
+}
+
+.icon_empty {
+	display: none;
+}
+
+@media only screen and (max-width: 600px) {
+	#barSearchMobile {
+		display: block;
+		position: relative;
+		background-color: RGB(104, 175, 212);
+		height: 34px;
+		color: white;
+		line-height: 11vw;
+		text-align: center;
+	}
+	#barSearchMobile i {
+		font-size: 5vw;
+		margin-right: 1.5vw;
+		line-height: 11vw;
+	}
+	#wrapSearchBar.off {
+		display: none;
+	}
+	#wrapSearchBar {
+		padding: 3vw 6vw 3vw 6vw;
+	}
+	#wrapSearchBar .form-group {
+		display: block;
+	}
+	#wrapSearchBar .form-group i {
+		width: 6vw;
+		font-size: 5vw;
+		margin: 1vw;
+	}
+	#wrapSearchBar .form-control {
+		position: relative;
+		border: none;
+		display: inline-block;
+		width: 80%;
+		border-radius: 0px;
+	}
+	#btnHosting {
+		display: none;
+	}
+	#btnHostingMobile {
+		position: fixed;
+		left: 3vw;
+		bottom: 3vw;
+		display: block;
+		width: 18vw;
+		height: 18vw;
+		z-index: 10;
+		color: #fff;
+		border: none;
+		border-radius: 50%;
+		font-size: 8vw;
+	}
+	.icon_empty {
+		display: inline-block;
+	}
+	#btnSearchbarSubmit i {
+		display: none;
+	}
+	#btnSearchbarSubmitMobile {
+		display:inline-block;
+		position: absolute;
+		color: white;
+		width: 80%;
+		margin-left:5px;
+		bottom: -35px;
+	}
+}

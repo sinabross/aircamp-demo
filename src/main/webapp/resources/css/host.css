@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.modal-header{border:0;height:80px;}
+.modal-content{border-radius:0;border:0;background-color:#fafafa}
+.modal-footer{border:0}
+
+#hostInfo{margin-left:20px}
+.img_host_profile{display:block;width:200px;height:200px;border-radius:50%;margin:15px auto}
+.host_name {font-size:20px;font-weight:bold;text-align:center;}
+.host_id {font-size:18px;font-weight:bold;text-align:center;margin-bottom:25px;}
+.host_phone{margin:0 !important}
+
+.host_line{border-top:1px solid #929E68;margin:30px 0}
+
+#hostItem h4{font-size:20px;font-weight:bold;margin:20px auto 10px 10px;}
+.host_gallery{display:inline-block;margin:10px;}
+.img_host_gallery{display:none;width:100px;height:100px;}
+.img_host_gallery:first-child{display:block}
+
+#btnHostClose{width:100px;height:35px;color:white;font-size:15px;font-weight:bold;}

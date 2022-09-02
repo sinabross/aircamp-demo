@@ -1,0 +1,172 @@
+li {
+	list-style: none;
+}
+
+/* �쟾泥� */
+#btnDetailBottom .row {
+	position: relative;
+	box-sizing: border-box;
+	height: 200px;
+}
+
+/* �씠誘몄� �겕湲� �꽕�젙*/
+.img_item_thumnail {
+	display: block;
+	width: 320px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+/* �씠誘몄� 諛� 由ъ뒪�듃 */
+.box_item {
+	height: 250px;
+	background-color: #FEFFFC;
+}
+
+/* �젣紐� */
+.item_title {
+	position: relative;
+	font-size: 32px;
+	margin: 0 0 40px 0;
+}
+
+/* �궇吏� �젣紐� */
+.item_date, .item_path_text {
+	position: relative;
+	margin-top: 15px;
+	font-size: 20px;
+}
+
+/* ���뿬�씪 */
+.item_sdate {
+	position: relative;
+	display: inline-block;
+}
+
+/* ~ 臾쇨껐*/
+.com {
+	position: relative;
+	padding: 0 10px;
+	display: inline-block;
+}
+
+/* 諛섎궔�씪 */
+.item_edate {
+	position: relative;
+	display: inline-block;
+}
+
+/* /* �쐞移� 湲��뵪 �꽕�젙 */
+.item_path_text i {
+	margin-right: 15px;
+}
+
+/* 媛�寃� */
+.item_price {
+	position: absolute;
+	text-align: right;
+	box-sizing: border-box;
+	bottom: 5%;
+	right: 5%;
+	font-size: 30px;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+
+/* hr�꽑 �깋源� */
+.itemHr {
+	margin: 0 !important;
+	border: 1px solid #929E68 !important;
+}
+/* 아이템 요약설명 */
+.wrap_item_info {
+	color: black;
+	margin: 40px 30px 40px 10px;
+}
+
+.wrap_item_info:hover {
+	color: black;
+	text-decoration: none;
+}
+
+.item_star {
+	position: relative;
+	margin-top: 25px;
+	font-size: 15px;
+	color: #606060;
+}
+
+.item_star .fa-star {
+	color: #FFC90E;
+	font-size: 25px;
+	margin-right: 5px;
+}
+
+.item_star .fa-user {
+	margin: 0 0 0 15px;
+}
+
+/* �뵒諛붿씠�뒪媛� 768px誘몃쭔�씪 寃쎌슦 湲��뵪 �닔�젙 */
+@media only screen and (max-width:768px) {
+	.box_item {
+		height: 250px;
+		background-color: #FEFFFC;
+		padding: 10px;
+	}
+	.box_item img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+	}
+	.item_title {
+		position: relative;
+		padding: 0;
+		margin: 0;
+		top: 0;
+		left: 0;
+		top: 0;
+	}
+	.item_title h2 {
+		font-size: 25px !important;
+	}
+	.item_date h4 {
+		position: relative;
+		font-size: 15px;
+	}
+	.item_sdate {
+		position: relative;
+	}
+	.com {
+		position: relative;
+	}
+	.item_edate {
+		position: relative;
+	}
+	.item_path_text {
+		position: relative;
+		font-size: 15px;
+	}
+	.item_path_image {
+		width: 25px;
+	}
+	.item_price {
+		bottom: 5px;
+		width: 100%;
+		right: 10px;
+		font-size: 20px;
+	}
+	.item_star {
+		position: relative;
+		height: 30px;
+		font-size: 15px;
+	}
+	.item_star .fa-star {
+		color: #FFC90E;
+		font-size: 25px;
+		margin-right: 5px;
+		font-size: 18px;
+	}
+}

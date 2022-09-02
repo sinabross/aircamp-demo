@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aircamp.mapper.SearchMapper">
+
+	<!-- <sql id="paging"> <trim prefix="(" suffix=") AND " prefixOverrides="OR"> 
+		<foreach item="type" collection="typeArr"> <trim prefix="OR"> <choose> <when 
+		test="type == 'T'.toString()"> c_title like '%'||#{keyword}||'%' </when> 
+		<when test="type == 'C'.toString()"> c_content like '%'||#{keyword}||'%' 
+		</when> <when test="type == 'W'.toString()"> m_id like '%'||#{keyword}||'%' 
+		</when> </choose> </trim> </foreach> </trim> </sql> -->
+	<select id="getThumnailPhoto"
+		resultType="com.aircamp.domain.GalleryVO">
+		select *
+		from aircamp.tbl_gallery g
+		where g.g_id=#{g_id}
+	</select>
+
+	<!-- 페이징처리 -->
+	<select id="searchResult"
+		resultType="com.aircamp.domain.ItemThumbnailVO">
+		<![CDATA[
+			
+			select *
+				from
+		    	(select /*+INDEX_DESC(tbl_item pk_item)*/
+				        rownum rn,tbl_item.i_id, tbl_item.m_id, tbl_item.i_sdate, tbl_item.i_edate, 
+				tbl_item.i_score, tbl_item.i_eval, tbl_item.i_regdate,
+				tbl_item.i_title, tbl_item.i_price, tbl_item.i_info, 
+				tbl_item.i_phone, tbl_item.i_email, tbl_item.i_katalk, tbl_item.i_addr, tbl_item.i_status,
+				g.g_id
+				from tbl_item 
+		        left outer join  
+				(select
+				tbl_item.i_id,min(tbl_gallery.g_id) g_id
+				from tbl_gallery ,
+				tbl_item
+				where
+				tbl_gallery.i_id=tbl_item.i_id
+				group by
+				tbl_gallery.i_id) g
+		        on g.i_id=tbl_item.i_id
+		        where i_status=0 ]]>
+		<if test='iAddr != null and iAddr != ""'>
+			and i_addr like '%'||#{iAddr}||'%'
+		</if>
+		<if test='iSdate != null and iSdate != ""'>
+			and i_sdate <![CDATA[>=]]>
+			#{iSdate}
+		</if>
+		<if test='iEdate != null and iEdate != ""'>
+			and i_edate <![CDATA[<=]]>
+			#{iEdate}
+		</if>
+		<if test='iTitle != null and iTitle != ""'>
+			and i_title like '%'||#{iTitle}||'%'
+		</if>
+
+		)t 			<![CDATA[	
+				 
+				 
+				 where rn <= (#{pageNum} * 10) and rn > ((#{pageNum} -1) * 10)
+		]]>
+		<!-- order by i_regdate desc -->
+	</select>
+
+	<!-- 전체 데이터 수 -->
+	<select id="searchGetTotal" resultType="int">
+		<![CDATA[
+			select count(*)
+			from 
+			(select * 
+			from  tbl_item 
+			left outer join 
+			(select  tbl_item.i_id, MIN(tbl_gallery.g_id) g_id  
+			from tbl_gallery , tbl_item 
+			where  tbl_gallery.i_id=tbl_item.i_id 
+			group by tbl_item.i_id, tbl_gallery.i_id) g 
+			on g.i_id=tbl_item.i_id)  
+			where 1=1 and i_status=0
+			]]>
+
+		<if test='iAddr != null and iAddr != ""'>
+			and i_addr like '%'||#{iAddr}||'%'
+		</if>
+		<if test='iSdate != null and iSdate != ""'>
+			and i_sdate <![CDATA[>=]]>
+			#{iSdate}
+		</if>
+		<if test='iEdate != null and iEdate != ""'>
+			and i_edate <![CDATA[<=]]>
+			#{iEdate}
+		</if>
+		<if test='iTitle != null and iTitle != ""'>
+			and i_title like '%'||#{iTitle}||'%'
+		</if>
+
+	</select>
+
+
+</mapper>

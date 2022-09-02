@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<!-- <bean id="aircampPasswordEncoder" class="com.aircamp.security.AircampNoOpPasswordEncoder" 
+		/> -->
+	<bean id="aircampLoginSuccess"
+		class="com.aircamp.security.AircampLoginSuccessHandler" />
+	<bean id="aircampLoginDenied"
+		class="com.aircamp.security.AircampLoginDeniedHandler" />
+	<bean id="aircampLogoutuccess"
+		class="com.aircamp.security.AircampLogoutSuccessHandler" />
+	<bean id="aircampAccessDeniedHandler"
+		class="com.aircamp.security.AircampAccessDeniedHandlerImlp">
+	</bean>
+	<bean id="aircampAuthenticationEntryPoint"
+		class="com.aircamp.security.AircampAuthenticationEntryPoint">
+	</bean>
+	<!-- <security:http auto-config="true" use-expressions="true" entry-point-ref="authenticationEntryPoint"> -->
+	<security:http auto-config="true" use-expressions="true"
+		entry-point-ref="aircampAuthenticationEntryPoint">
+
+
+
+		<security:form-login login-page="/loginGet"
+			authentication-success-handler-ref="aircampLoginSuccess"
+			authentication-failure-handler-ref="aircampLoginDenied" />
+		<!-- <security:csrf disabled="true"/> -->
+
+
+		<security:logout logout-url="/logout"
+			invalidate-session="true" success-handler-ref="aircampLogoutuccess" />
+		<security:intercept-url
+			pattern="/member/modify" access="hasAnyRole('ROLE_MEMBER')" />
+
+		<security:intercept-url pattern="/mypage/*"
+			access="hasAnyRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/item/add"
+			access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
+			<security:intercept-url pattern="/review/addReview"
+			access="hasAnyRole('ROLE_MEMBER')" />
+
+		<security:access-denied-handler
+			ref="aircampAccessDeniedHandler" />
+
+
+	</security:http>
+
+
+	<security:authentication-manager>
+
+		<security:authentication-provider
+			user-service-ref="aircampUserDetailsService">
+			<!-- 유저 정보를 가져오는 클래스를 설정하는 곳이다. aircampUserDetailsService는 밑에 빈의 클래스를 
+				뜻한다. -->
+
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
+			<!-- <security:password-encoder ref="aircampPasswordEncoder" /> -->
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<!-- AircampUserDetailsService 인터페이스를 구현해서 만든 클래스를 aircampUserDetailsService라는 
+		이름으로 bean등록한다. -->
+	<bean id="aircampUserDetailsService"
+		class="com.aircamp.security.AircampUserDetailsService"></bean>
+
+	<bean id="aircampAuthProvider"
+		class="com.aircamp.security.AircampAuthenticationProvider" />
+
+
+
+
+</beans>
